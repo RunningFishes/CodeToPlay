@@ -5,19 +5,8 @@ using UnityEngine;
 public class Loop : Command
 {
     public int loopCount;
-    Bracket bracket;
-    List<Command> commands;
+    public Command linkedLoopCommand;
     
-    private void Start()
-    {
-        commands = new List<Command>();
-        bracket = GetComponentInChildren<Bracket>();
-        foreach (GameObject child in bracket.child1)
-        {
-            commands.Add(child.GetComponent<Command>());
-        }
-    }
-
     public override void Execute()
     {
         StartCoroutine(Looping());
@@ -25,16 +14,38 @@ public class Loop : Command
 
     IEnumerator Looping()
     {
+        // loop is running
+        Core.instance.SetBool(true);
+
+        // create inner status
+        int layer = Core.instance.GetIsRunningCount();
+        Core.instance.AddToIsRunning(false);
+
+
         for (int i = 0; i < loopCount; i++)
         {
-            for (int j = 0; j < commands.Count; j++)
+            // work on this command
+            linkedLoopCommand?.Execute();
+            // wait until upper command complete
+            while (Core.instance.GetBool(layer))
             {
-                while (Core.instance.isRunning)
-                {
-                    yield return null;
-                }
-                commands[j].Execute();
+                yield return null;
             }
         }
+
+        // remove inner status
+        Core.instance.RemoveLastIndexFromIsRunning();
+
+        // if have next work on next command
+        if (nextLinkedCommand != null)
+            nextLinkedCommand.Execute();
+        // no next command so this indent is complete
+        else
+            Core.instance.SetBool(false);
+    }
+    
+    public void SetLinkedLoopCommand(Command command)
+    {
+        linkedLoopCommand = command;
     }
 }
