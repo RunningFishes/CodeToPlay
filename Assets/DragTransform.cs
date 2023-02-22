@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DragTransform : MonoBehaviour
 {
@@ -12,11 +13,10 @@ public class DragTransform : MonoBehaviour
     private bool dragging = false;
     private float distance;
 
-    private void Start()
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
-        GetComponent<SetLinked>().isActive = false;
     }
 
     void OnMouseEnter()
@@ -26,27 +26,25 @@ public class DragTransform : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (!dragging)
-        {
-            GetComponent<SetLinked>().isActive = false;
-            Destroy(rb);
-        }
         spriteRenderer.color = originalColor;
     }
 
     void OnMouseDown()
     {
-        distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+        distance = Vector2.Distance(transform.position, Camera.main.transform.position);
         dragging = true;
-        gameObject.AddComponent<Rigidbody2D>();
-        rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0;
+
+        // make on top
+        transform.position += new Vector3(0, 0, -1);
     }
 
     void OnMouseUp()
     {
         dragging = false;
-        GetComponent<SetLinked>().isActive = true;
+        GetComponent<SetLinked>().Linked();
+
+        // make default
+        transform.position += new Vector3(0, 0, 1);
     }
 
     void Update()
@@ -55,7 +53,7 @@ public class DragTransform : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 rayPoint = ray.GetPoint(distance);
-            transform.position = rayPoint;
+            transform.position = new Vector3(rayPoint.x, rayPoint.y, transform.position.z);
         }
     }
 }

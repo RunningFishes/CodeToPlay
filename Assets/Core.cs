@@ -14,12 +14,12 @@ public class Core : MonoBehaviour
         List<bool> isRunning = new List<bool>();
     }
 
-    public void AddToIsRunning(bool isRunning)
+    public void Push(bool isRunning)
     {
         this.isRunning.Add(isRunning);
     }
 
-    public void RemoveLastIndexFromIsRunning()
+    public void Pop()
     {
         this.isRunning.RemoveAt(this.isRunning.Count - 1);
     }
@@ -35,7 +35,7 @@ public class Core : MonoBehaviour
         return isRunning[index];
     }
 
-    public int GetIsRunningCount()
+    public int Size()
     {
         return isRunning.Count;
     }

@@ -652,8 +652,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ef75c6b0594e44196f77fa761f1187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLinkedCommand: {fileID: 0}
+  prevLinkedCommand: {fileID: 0}
+  parentCommand: {fileID: 0}
   direction: 2
-  linkedCommand: {fileID: 0}
 --- !u!61 &551372031
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -664,7 +666,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -705,7 +707,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676761a9725463d438fc9c61a3f25994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!1 &890188889
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,7 +806,7 @@ GameObject:
   - component: {fileID: 919872397}
   - component: {fileID: 919872398}
   m_Layer: 0
-  m_Name: WalkTop
+  m_Name: WalkUp
   m_TagString: Command
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -891,8 +892,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ef75c6b0594e44196f77fa761f1187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLinkedCommand: {fileID: 0}
+  prevLinkedCommand: {fileID: 0}
+  parentCommand: {fileID: 0}
   direction: 0
-  linkedCommand: {fileID: 0}
 --- !u!61 &919872396
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -903,7 +906,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -944,7 +947,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676761a9725463d438fc9c61a3f25994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!1 &1175596174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,8 +1324,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f537edc749edab49a0e6a8226ffa288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLinkedCommand: {fileID: 0}
+  prevLinkedCommand: {fileID: 0}
+  parentCommand: {fileID: 0}
   loopCount: 1
-  linkedCommand: {fileID: 0}
   linkedLoopCommand: {fileID: 0}
 --- !u!212 &1369393787
 SpriteRenderer:
@@ -1385,7 +1389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369393785}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 2.45, z: 0}
+  m_LocalPosition: {x: 1.29, y: 2.3, z: 0}
   m_LocalScale: {x: 4.5554, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1403,7 +1407,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1444,7 +1448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676761a9725463d438fc9c61a3f25994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!1 &1453248412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,8 +1549,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ef75c6b0594e44196f77fa761f1187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLinkedCommand: {fileID: 0}
+  prevLinkedCommand: {fileID: 0}
+  parentCommand: {fileID: 0}
   direction: 1
-  linkedCommand: {fileID: 0}
 --- !u!61 &1453248416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1558,7 +1563,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1599,7 +1604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676761a9725463d438fc9c61a3f25994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!1 &1621538696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,8 +1750,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ef75c6b0594e44196f77fa761f1187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLinkedCommand: {fileID: 0}
+  prevLinkedCommand: {fileID: 0}
+  parentCommand: {fileID: 0}
   direction: 3
-  linkedCommand: {fileID: 0}
 --- !u!61 &1712066228
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1758,7 +1764,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1799,7 +1805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676761a9725463d438fc9c61a3f25994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!1 &1901312881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2074,7 +2079,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: walk top
+  m_text: walk up
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2289,8 +2294,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f537edc749edab49a0e6a8226ffa288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLinkedCommand: {fileID: 0}
+  prevLinkedCommand: {fileID: 0}
+  parentCommand: {fileID: 0}
   loopCount: 2
-  linkedCommand: {fileID: 0}
   linkedLoopCommand: {fileID: 0}
 --- !u!61 &2055716160
 BoxCollider2D:
@@ -2302,7 +2309,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2343,4 +2350,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676761a9725463d438fc9c61a3f25994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0

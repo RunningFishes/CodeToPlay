@@ -18,8 +18,8 @@ public class Loop : Command
         Core.instance.SetBool(true);
 
         // create inner status
-        int layer = Core.instance.GetIsRunningCount();
-        Core.instance.AddToIsRunning(false);
+        int layer = Core.instance.Size();
+        Core.instance.Push(false);
 
 
         for (int i = 0; i < loopCount; i++)
@@ -34,7 +34,7 @@ public class Loop : Command
         }
 
         // remove inner status
-        Core.instance.RemoveLastIndexFromIsRunning();
+        Core.instance.Pop();
 
         // if have next work on next command
         if (nextLinkedCommand != null)
@@ -47,5 +47,24 @@ public class Loop : Command
     public void SetLinkedLoopCommand(Command command)
     {
         linkedLoopCommand = command;
+    }
+
+    public int GetSizeLinkedLoopCommand()
+    {
+        int count = 0;
+        Command command = linkedLoopCommand;
+        while (command != null)
+        {
+            if (command.gameObject.tag == "Loop")
+            {
+                count += command.GetComponent<Loop>().GetSizeLinkedLoopCommand() + 1;
+            }
+            else
+            {
+                count += 1;
+            }
+            command = command.nextLinkedCommand;
+        }
+        return count;
     }
 }

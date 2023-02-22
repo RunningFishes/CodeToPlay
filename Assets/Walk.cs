@@ -29,42 +29,38 @@ public class Walk : Command
     IEnumerator WalkOnDirection()
     {
         Core.instance.SetBool(true);
-        
-        if (direction == Direction.Up)
+
+        Vector3 movement = SelectVectorFromDirection(direction);
+        for (int i = 0; i < 10; i++)
         {
-            for (int i = 0; i < 10; i++)
-            {
-                player.transform.position += new Vector3(0, 1, 0) * 0.03f * 5;
-                yield return new WaitForSeconds(0.03f);
-            }
+            player.transform.position += movement * 0.03f * 5;
+            yield return new WaitForSeconds(0.03f);
         }
-        else if (direction == Direction.Down)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                player.transform.position += new Vector3(0, -1, 0) * 0.03f * 5;
-                yield return new WaitForSeconds(0.03f);
-            }
-        }
-        else if (direction == Direction.Left)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                player.transform.position += new Vector3(-1, 0, 0) * 0.03f * 5;
-                yield return new WaitForSeconds(0.03f);
-            }
-        }
-        else if (direction == Direction.Right)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                player.transform.position += new Vector3(1, 0, 0) * 0.03f * 5;
-                yield return new WaitForSeconds(0.03f);
-            }
-        }
+
         if (nextLinkedCommand != null)
             nextLinkedCommand.Execute();
         else
             Core.instance.SetBool(false);
+    }
+
+    Vector3 SelectVectorFromDirection(Direction di)
+    {
+        if (direction == Direction.Up)
+        {
+            return new Vector3(0, 1, 0);
+        }
+        else if (direction == Direction.Down)
+        {
+            return new Vector3(0, -1, 0);
+        }
+        else if (direction == Direction.Left)
+        {
+            return new Vector3(-1, 0, 0);
+        }
+        else if (direction == Direction.Right)
+        {
+            return new Vector3(1, 0, 0);
+        }
+        return new Vector3(0, 0, 0);
     }
 }
