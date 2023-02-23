@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Admin : MonoBehaviour
 {
-    GameObject Programs;
+    GameObject Main;
 
     void Start()
     {
-        Programs = GameObject.Find("Programs");
+        Main = GameObject.Find("Main");
     }
     
     void Update()
@@ -20,7 +20,7 @@ public class Admin : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Programs.GetComponent<Function>().Execute();
+            Main.GetComponent<Function>().Execute();
         }
     }
 }

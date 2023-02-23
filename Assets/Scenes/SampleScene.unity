@@ -1306,7 +1306,7 @@ GameObject:
   - component: {fileID: 1369393790}
   - component: {fileID: 1369393791}
   m_Layer: 0
-  m_Name: Programs
+  m_Name: Main
   m_TagString: Function
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
