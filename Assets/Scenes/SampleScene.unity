@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 551372031}
   - component: {fileID: 551372032}
   - component: {fileID: 551372033}
+  - component: {fileID: 551372034}
   m_Layer: 0
   m_Name: WalkLeft
   m_TagString: Command
@@ -707,6 +708,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676761a9725463d438fc9c61a3f25994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &551372034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551372027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4bb51a0c9fe664a92fe7b8a2f37e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &890188889
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,6 +818,7 @@ GameObject:
   - component: {fileID: 919872396}
   - component: {fileID: 919872397}
   - component: {fileID: 919872398}
+  - component: {fileID: 919872399}
   m_Layer: 0
   m_Name: WalkUp
   m_TagString: Command
@@ -945,6 +959,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 676761a9725463d438fc9c61a3f25994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &919872399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919872392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4bb51a0c9fe664a92fe7b8a2f37e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1175596174
@@ -1305,6 +1331,7 @@ GameObject:
   - component: {fileID: 1369393789}
   - component: {fileID: 1369393790}
   - component: {fileID: 1369393791}
+  - component: {fileID: 1369393793}
   m_Layer: 0
   m_Name: Main
   m_TagString: Function
@@ -1447,6 +1474,18 @@ MonoBehaviour:
   prevLinkedCommand: {fileID: 0}
   parentCommand: {fileID: 0}
   linkedFunctionCommand: {fileID: 0}
+--- !u!114 &1369393793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369393785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4bb51a0c9fe664a92fe7b8a2f37e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1453248412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,6 +1500,7 @@ GameObject:
   - component: {fileID: 1453248416}
   - component: {fileID: 1453248417}
   - component: {fileID: 1453248418}
+  - component: {fileID: 1453248419}
   m_Layer: 0
   m_Name: WalkDown
   m_TagString: Command
@@ -1603,6 +1643,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676761a9725463d438fc9c61a3f25994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1453248419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453248412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4bb51a0c9fe664a92fe7b8a2f37e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1621538696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,6 +1729,7 @@ GameObject:
   - component: {fileID: 1712066228}
   - component: {fileID: 1712066229}
   - component: {fileID: 1712066230}
+  - component: {fileID: 1712066231}
   m_Layer: 0
   m_Name: WalkRight
   m_TagString: Command
@@ -1817,6 +1870,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 676761a9725463d438fc9c61a3f25994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1712066231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712066224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4bb51a0c9fe664a92fe7b8a2f37e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1901312881
@@ -2221,6 +2286,7 @@ GameObject:
   - component: {fileID: 2055716160}
   - component: {fileID: 2055716161}
   - component: {fileID: 2055716162}
+  - component: {fileID: 2055716163}
   m_Layer: 0
   m_Name: Loop
   m_TagString: Loop
@@ -2362,5 +2428,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 676761a9725463d438fc9c61a3f25994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2055716163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055716156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4bb51a0c9fe664a92fe7b8a2f37e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

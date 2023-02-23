@@ -41,6 +41,7 @@ public class DragTransform : MonoBehaviour
     void OnMouseUp()
     {
         dragging = false;
+        GetComponent<ManageLinked>().UpdateLinked();
         GetComponent<SetLinked>().Linked();
 
         // make default
