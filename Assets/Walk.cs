@@ -27,10 +27,10 @@ public class Walk : Command
 
     public override void Execute()
     {
-        StartCoroutine(WalkOnDirection());
+        StartCoroutine(Walking());
     }
 
-    IEnumerator WalkOnDirection()
+    IEnumerator Walking()
     {
         // before execute
         spriteRenderer.color = ColorExecute.instance.onExecuteColor;

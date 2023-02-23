@@ -43,13 +43,23 @@ public class SetLinked : MonoBehaviour
         }
         if (mainObjects.tag == "Command")
         {
-            // command no indent
-            Debug.Log("command no indent");
+            // command
+            Debug.Log("command");
             mainObjectsCommand.SetNextLinkedCommand(linkedObjectsCommand);
             linkedObjectsCommand.SetPrevLinkedCommand(mainObjectsCommand);
             linkedObjectsCommand.SetParentCommand(mainObjectsCommand.parentCommand);
 
             linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
+        }
+        if (mainObjects.tag == "Function")
+        {
+            // function
+            Debug.Log("function");
+            mainObjectsCommand.GetComponent<Function>().SetLinkedFunctionCommand(linkedObjectsCommand);
+            linkedObjectsCommand.SetParentCommand(mainObjectsCommand);
+
+            linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x + 1, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
+
         }
     }
 

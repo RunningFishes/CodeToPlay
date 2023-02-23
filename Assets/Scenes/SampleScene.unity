@@ -1300,35 +1300,18 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1369393788}
+  - component: {fileID: 1369393792}
   - component: {fileID: 1369393787}
-  - component: {fileID: 1369393786}
   - component: {fileID: 1369393789}
   - component: {fileID: 1369393790}
   - component: {fileID: 1369393791}
   m_Layer: 0
   m_Name: Programs
-  m_TagString: Loop
+  m_TagString: Function
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1369393786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1369393785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f537edc749edab49a0e6a8226ffa288, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextLinkedCommand: {fileID: 0}
-  prevLinkedCommand: {fileID: 0}
-  parentCommand: {fileID: 0}
-  loopCount: 1
-  linkedLoopCommand: {fileID: 0}
 --- !u!212 &1369393787
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1448,6 +1431,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676761a9725463d438fc9c61a3f25994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1369393792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369393785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14abaa329be4dec4293f0bdf802f6cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLinkedCommand: {fileID: 0}
+  prevLinkedCommand: {fileID: 0}
+  parentCommand: {fileID: 0}
+  linkedFunctionCommand: {fileID: 0}
 --- !u!1 &1453248412
 GameObject:
   m_ObjectHideFlags: 0

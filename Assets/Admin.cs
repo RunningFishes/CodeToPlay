@@ -20,7 +20,7 @@ public class Admin : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Programs.GetComponent<Loop>().Execute();
+            Programs.GetComponent<Function>().Execute();
         }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Loop
   - Command
+  - Function
   layers:
   - Default
   - TransparentFX
