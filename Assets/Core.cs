@@ -7,6 +7,7 @@ public class Core : MonoBehaviour
     public static Core instance;
 
     public List<bool> isRunning;
+    public float clockPerExecute;
 
     void Awake()
     {

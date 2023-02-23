@@ -7,6 +7,11 @@ public abstract class Command : MonoBehaviour
     public Command nextLinkedCommand;
     public Command prevLinkedCommand;
     public Command parentCommand;
+
+    protected SpriteRenderer spriteRenderer;
+    protected Color originalColor;
+    protected float clockPerExecute;
+    
     public abstract void Execute();
     public virtual void SetNextLinkedCommand(Command command)
     {

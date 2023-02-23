@@ -6,7 +6,14 @@ public class Loop : Command
 {
     public int loopCount;
     public Command linkedLoopCommand;
-    
+
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+        clockPerExecute = Core.instance.clockPerExecute;
+    }
+
     public override void Execute()
     {
         StartCoroutine(Looping());
@@ -24,6 +31,10 @@ public class Loop : Command
 
         for (int i = 0; i < loopCount; i++)
         {
+            spriteRenderer.color = ColorExecute.instance.onExecuteColor;
+            yield return new WaitForSeconds(clockPerExecute);
+            spriteRenderer.color = originalColor;
+            
             // work on this command
             linkedLoopCommand?.Execute();
             // wait until upper command complete

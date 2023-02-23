@@ -12,13 +12,17 @@ public class Walk : Command
         Right
     }
     
-    GameObject player;
     [SerializeField]
     Direction direction;
+    
+    private GameObject player;
 
     void Awake()
     {
         player = GameObject.Find("Player");
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+        clockPerExecute = Core.instance.clockPerExecute;
     }
 
     public override void Execute()
@@ -28,14 +32,20 @@ public class Walk : Command
 
     IEnumerator WalkOnDirection()
     {
-        Core.instance.SetBool(true);
+        // before execute
+        spriteRenderer.color = ColorExecute.instance.onExecuteColor;
 
+        // execute
+        Core.instance.SetBool(true);
         Vector3 movement = SelectVectorFromDirection(direction);
         for (int i = 0; i < 10; i++)
         {
-            player.transform.position += movement * 0.03f * 5;
-            yield return new WaitForSeconds(0.03f);
+            player.transform.position += movement * clockPerExecute/10f * 5;
+            yield return new WaitForSeconds(clockPerExecute / 10f);
         }
+
+        // after execute
+        spriteRenderer.color = originalColor;
 
         if (nextLinkedCommand != null)
             nextLinkedCommand.Execute();
