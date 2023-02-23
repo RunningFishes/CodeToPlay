@@ -6,9 +6,58 @@ public class SetLinked : MonoBehaviour
 {
     public void Linked()
     {
+        Collider2D closestCollider = GetClosestCollider();
+
+        if (closestCollider == null) return;
+
+        GameObject mainObjects = closestCollider.gameObject;
+        GameObject linkedObjects = gameObject;
+
+        Command mainObjectsCommand = mainObjects.GetComponent<Command>();
+        Command linkedObjectsCommand = linkedObjects.GetComponent<Command>();
+
+        if (mainObjects.tag == "Loop")
+        {
+            Loop mainObjectsLoop = mainObjects.GetComponent<Loop>();
+            // loop no indent
+            if (Mathf.Abs(mainObjects.transform.position.x - linkedObjects.transform.position.x) <= 1.0f)
+            {
+                Debug.Log("loop no indent");
+                mainObjectsCommand.SetNextLinkedCommand(linkedObjectsCommand);
+                linkedObjectsCommand.SetPrevLinkedCommand(mainObjectsCommand);
+                linkedObjectsCommand.SetParentCommand(mainObjectsCommand.parentCommand);
+
+                int commandInLoop = mainObjectsLoop.GetSizeLinkedLoopCommand();
+                linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x, mainObjects.transform.position.y - (commandInLoop + 1) * 1.05f, mainObjects.transform.position.z);
+            }
+            // loop with indent
+            else
+            {
+                Debug.Log("loop with indent");
+                mainObjectsLoop.SetLinkedLoopCommand(linkedObjectsCommand);
+                linkedObjectsCommand.SetParentCommand(mainObjectsCommand);
+
+                linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x + 1, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
+            }
+
+        }
+        if (mainObjects.tag == "Command")
+        {
+            // command no indent
+            Debug.Log("command no indent");
+            mainObjectsCommand.SetNextLinkedCommand(linkedObjectsCommand);
+            linkedObjectsCommand.SetPrevLinkedCommand(mainObjectsCommand);
+            linkedObjectsCommand.SetParentCommand(mainObjectsCommand.parentCommand);
+
+            linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
+        }
+    }
+
+    private Collider2D GetClosestCollider()
+    {
         Collider2D[] colliders = new Collider2D[100];
         int size = Physics2D.OverlapCollider(GetComponent<Collider2D>(), new ContactFilter2D(), colliders);
-        
+
         // find closet colliders
         float distance = 1e9f;
         int idx = -1;
@@ -21,43 +70,7 @@ public class SetLinked : MonoBehaviour
                 idx = i;
             }
         }
-        if (idx == -1) return;
-
-        GameObject mainObjects = colliders[idx].gameObject;
-        GameObject linkedObjects = gameObject;
-        if (mainObjects.tag == "Loop")
-        {
-            // loop no indent
-            if (Mathf.Abs(mainObjects.transform.position.x - linkedObjects.transform.position.x) <= 1.0f)
-            {
-                Debug.Log("loop no indent");
-                mainObjects.GetComponent<Command>().SetNextLinkedCommand(linkedObjects.GetComponent<Command>());
-                linkedObjects.GetComponent<Command>().SetPrevLinkedCommand(mainObjects.GetComponent<Command>());
-                linkedObjects.GetComponent<Command>().SetParentCommand(mainObjects.GetComponent<Command>().parentCommand);
-
-                int commandInLoop = mainObjects.GetComponent<Loop>().GetSizeLinkedLoopCommand();
-                linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x, mainObjects.transform.position.y - (commandInLoop + 1) * 1.05f, mainObjects.transform.position.z);
-            }
-            // loop with indent
-            else
-            {
-                Debug.Log("loop with indent");
-                mainObjects.GetComponent<Loop>().SetLinkedLoopCommand(linkedObjects.GetComponent<Command>());
-                linkedObjects.GetComponent<Command>().SetParentCommand(mainObjects.GetComponent<Command>());
-
-                linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x + 1, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
-            }
-
-        }
-        if (mainObjects.tag == "Command")
-        {
-            // command no indent
-            Debug.Log("command no indent");
-            mainObjects.GetComponent<Command>().SetNextLinkedCommand(linkedObjects.GetComponent<Command>());
-            linkedObjects.GetComponent<Command>().SetPrevLinkedCommand(mainObjects.GetComponent<Command>());
-            linkedObjects.GetComponent<Command>().SetParentCommand(mainObjects.GetComponent<Command>().parentCommand);
-
-            linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
-        }
+        if (idx == -1) return null;
+        return colliders[idx];
     }
 }
