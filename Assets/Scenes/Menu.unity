@@ -1429,6 +1429,7 @@ GameObject:
   - component: {fileID: 2076446567}
   - component: {fileID: 2076446568}
   - component: {fileID: 2076446569}
+  - component: {fileID: 2076446570}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -1476,6 +1477,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageReach: 1
+--- !u!114 &2076446570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076446566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa213c2a6ad651b4e84d9312722c48f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDragSomething: 0
+  dragSpeed: 2
 --- !u!1 &2133953176
 GameObject:
   m_ObjectHideFlags: 0

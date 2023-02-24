@@ -9,7 +9,6 @@ public class DragTransform : MonoBehaviour
     
     private Color originalColor;
     private SpriteRenderer spriteRenderer;
-    private Rigidbody2D rb;
     private bool dragging = false;
     private float distance;
 
@@ -33,6 +32,7 @@ public class DragTransform : MonoBehaviour
     {
         distance = Vector2.Distance(transform.position, Camera.main.transform.position);
         dragging = true;
+        DragCamera.instance.isDragSomething = true;
 
         // make on top
         transform.position += new Vector3(0, 0, -1);
@@ -43,6 +43,7 @@ public class DragTransform : MonoBehaviour
         dragging = false;
         GetComponent<ManageLinked>().UnLinked();
         GetComponent<SetLinked>().Linked();
+        DragCamera.instance.isDragSomething = false;
 
         // make default
         transform.position += new Vector3(0, 0, 1);
