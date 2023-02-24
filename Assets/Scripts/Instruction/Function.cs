@@ -58,20 +58,10 @@ public class Function : Command
 
     public int GetSizeLinkedFunctionCommand()
     {
-        int count = 0;
-        Command command = linkedFunctionCommand;
-        while (command != null)
+        if (linkedFunctionCommand == null)
         {
-            if (command.gameObject.tag == "Loop")
-            {
-                count += command.GetComponent<Loop>().GetSizeLinkedLoopCommand() + 1;
-            }
-            else
-            {
-                count += 1;
-            }
-            command = command.nextLinkedCommand;
+            return 0;
         }
-        return count;
+        return linkedFunctionCommand.GetSizeCommands();
     }
 }
