@@ -27,14 +27,8 @@ public class DragCamera : MonoBehaviour
 
     private void Update()
     {
-        // is on stageXX
-        string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName.Length < 6)
+        if (!IsStageGameplay())
             return;
-        string sceneName5 = sceneName.Substring(0, 5);
-        if (sceneName5 != "Stage")
-            return;
-
         if (!isDragSomething)
             MouseInputs();
     }
@@ -77,5 +71,16 @@ public class DragCamera : MonoBehaviour
     void OnDisable()
     {
         SceneManager.sceneLoaded -= sceneLoaded;
+    }
+
+    bool IsStageGameplay()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName.Length < 6)
+            return false;
+        string sceneName5 = sceneName.Substring(0, 5);
+        if (sceneName5 != "Stage")
+            return false;
+        return true;
     }
 }
