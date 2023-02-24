@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class ManageLinked : MonoBehaviour
 {
-    public void UpdateLinked()
+    public void UnLinked()
     {
-        if (gameObject.tag == "Main") return;
+        if (gameObject.tag == "Function") return;
 
         Command thisCommand = GetComponent<Command>();
         Command parentCommand = thisCommand.parentCommand;
         Command prevCommand = thisCommand.prevLinkedCommand;
 
-        if (parentCommand == null) return;
-        if (prevCommand != null) // another objects
+        // reset parent in scene
+        thisCommand.transform.parent = null;
+        
+        if (prevCommand != null) // not first command in bracket -> unlink prev, this, parent
         {
             prevCommand.SetNextLinkedCommand(null);
             thisCommand.SetPrevLinkedCommand(null);
             thisCommand.SetParentCommand(null);
         }
-        else if (prevCommand == null) // first objects in bracket
+        else if (prevCommand == null && parentCommand != null) // first command in bracket -> unlink parent
         {
             if (parentCommand.tag == "Loop")
             {
@@ -34,6 +36,5 @@ public class ManageLinked : MonoBehaviour
                 thisCommand.SetParentCommand(null);
             }
         }
-        
     }
 }

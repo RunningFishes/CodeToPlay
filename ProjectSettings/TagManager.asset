@@ -7,6 +7,7 @@ TagManager:
   - Loop
   - Command
   - Function
+  - Main
   layers:
   - Default
   - TransparentFX

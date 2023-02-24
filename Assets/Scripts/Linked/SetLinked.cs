@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SetLinked : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class SetLinked : MonoBehaviour
 
         Command mainObjectsCommand = mainObjects.GetComponent<Command>();
         Command linkedObjectsCommand = linkedObjects.GetComponent<Command>();
+
+        if (linkedObjects.tag == "Function") return;
+
+        // set parent in scene
+        linkedObjectsCommand.transform.parent = mainObjects.transform;
 
         if (mainObjects.tag == "Loop")
         {
@@ -41,7 +47,7 @@ public class SetLinked : MonoBehaviour
             }
 
         }
-        if (mainObjects.tag == "Command")
+        else if (mainObjects.tag == "Command")
         {
             // command
             Debug.Log("command");
@@ -51,7 +57,7 @@ public class SetLinked : MonoBehaviour
 
             linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
         }
-        if (mainObjects.tag == "Function")
+        else if (mainObjects.tag == "Function")
         {
             // function
             Debug.Log("function");
@@ -59,7 +65,6 @@ public class SetLinked : MonoBehaviour
             linkedObjectsCommand.SetParentCommand(mainObjectsCommand);
 
             linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x + 1, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
-
         }
     }
 

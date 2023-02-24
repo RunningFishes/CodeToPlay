@@ -23,6 +23,12 @@ public abstract class Command : MonoBehaviour
     }
     public virtual void SetParentCommand(Command command)
     {
-        parentCommand = command;
+        //set all parent below command
+        Command tmpCommand = this;
+        while (tmpCommand != null)
+        {
+            tmpCommand.parentCommand = command;
+            tmpCommand = tmpCommand.nextLinkedCommand;
+        }
     }
 }
