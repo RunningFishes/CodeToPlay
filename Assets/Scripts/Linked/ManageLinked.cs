@@ -39,6 +39,12 @@ public class ManageLinked : MonoBehaviour
                 parentFunction.SetLinkedFunctionCommand(null);
                 thisCommand.SetParentCommand(null);
             }
+            else if(parentCommand.tag == "If")
+            {
+                If parentIf = parentCommand.GetComponent<If>();
+                parentIf.SetLinkedIfCommand(null);
+                thisCommand.SetParentCommand(null);
+            }
         }
     }
     private void ShiftCommandUp(Command command, int commandsSize)

@@ -64,6 +64,14 @@ public abstract class Command : MonoBehaviour
             {
                 count += tmpCommand.GetComponent<Loop>().linkedLoopCommand.GetSizeCommands();
             }
+            else if (tmpCommand.gameObject.tag == "If" && tmpCommand.GetComponent<If>().linkedIfCommand != null)
+            {
+                count += tmpCommand.GetComponent<If>().linkedIfCommand.GetSizeCommands();
+            }
+            else if (tmpCommand.gameObject.tag == "Function" && tmpCommand.GetComponent<Function>().linkedFunctionCommand != null)
+            {
+                count += tmpCommand.GetComponent<Function>().linkedFunctionCommand.GetSizeCommands();
+            }
             count += 1;
             tmpCommand = tmpCommand.nextLinkedCommand;
         }

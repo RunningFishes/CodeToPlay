@@ -63,9 +63,39 @@ public class SetLinked : MonoBehaviour
                 mainObjectsLoop.SetLinkedLoopCommand(linkedObjectsCommand);
                 linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x + 1, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
 
-                // move all command after loop depend on size of added command in loop
+                // move all command next loop by add size command
                 if (mainObjectsLoop.nextLinkedCommand != null)
                     mainObjectsLoop.nextLinkedCommand.transform.position += new Vector3(0, -addCommandSize * 1.05f, 0);
+            }
+        }
+        else if (mainObjects.tag == "If")
+        {
+            If mainObjectsIf = mainObjects.GetComponent<If>();
+
+            if (Mathf.Abs(mainObjects.transform.position.x - linkedObjects.transform.position.x) <= 1.0f)
+            {
+                linkedObjectsCommand.SetParentCommand(mainObjectsIf.parentCommand);
+
+                // insert command
+                if (mainObjectsIf.nextLinkedCommand != null)
+                    ConnectCommand(linkedObjectsCommand.GetBottomCommand(), mainObjectsIf.nextLinkedCommand);
+
+                ConnectCommand(mainObjectsIf, linkedObjectsCommand);
+            }
+            else
+            {
+                linkedObjectsCommand.SetParentCommand(mainObjectsIf);
+
+                // insert command
+                if (mainObjectsIf.linkedIfCommand != null)
+                    ConnectCommand(linkedObjectsCommand.GetBottomCommand(), mainObjectsIf.linkedIfCommand);
+
+                mainObjectsIf.SetLinkedIfCommand(linkedObjectsCommand);
+                linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x + 1, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
+
+                // move all command next if  by add size command
+                if (mainObjectsIf.nextLinkedCommand != null)
+                    mainObjectsIf.nextLinkedCommand.transform.position += new Vector3(0, -addCommandSize * 1.05f, 0);
             }
         }
         else if (mainObjects.tag == "Function")
@@ -103,6 +133,10 @@ public class SetLinked : MonoBehaviour
         if (prevCommand.gameObject.tag == "Loop")
         {
             commands += prevCommand.GetComponent<Loop>().GetSizeLinkedLoopCommand();
+        }
+        else if(prevCommand.gameObject.tag == "If")
+        {
+            commands += prevCommand.GetComponent<If>().GetSizeLinkedIfCommand();
         }
         nextCommand.transform.position = new Vector3(prevCommand.transform.position.x, prevCommand.transform.position.y - commands * 1.05f, prevCommand.transform.position.z);
 
