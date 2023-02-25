@@ -2057,6 +2057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onExecuteColor: {r: 1, g: 0.4292453, b: 0.4292453, a: 1}
+  onHoldedTransparent: 0.75
 --- !u!1 &1712066224
 GameObject:
   m_ObjectHideFlags: 0
