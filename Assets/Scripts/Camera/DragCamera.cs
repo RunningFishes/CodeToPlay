@@ -12,6 +12,10 @@ public class DragCamera : MonoBehaviour
     Vector3 lastMousePosition;
     private Camera cam;
 
+    [Header("Zoom")]
+    [SerializeField]
+    private float zoomSpeed;
+
     private void Awake()
     {
         if (instance == null)
