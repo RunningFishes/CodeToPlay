@@ -14,7 +14,11 @@ public class ManageLinked : MonoBehaviour
 
         // reset parent in scene
         thisCommand.transform.parent = null;
-        
+
+        //shift up by size of this command
+        int removeCommandSize = thisCommand.GetSizeCommands();
+        ShiftCommandUp(parentCommand, removeCommandSize);
+
         if (prevCommand != null) // not first command in bracket -> unlink prev, this, parent
         {
             prevCommand.SetNextLinkedCommand(null);
@@ -35,6 +39,17 @@ public class ManageLinked : MonoBehaviour
                 parentFunction.SetLinkedFunctionCommand(null);
                 thisCommand.SetParentCommand(null);
             }
+        }
+    }
+    private void ShiftCommandUp(Command command, int commandsSize)
+    {
+        while(command != null)
+        {
+            if(command.nextLinkedCommand != null)
+            {
+                command.nextLinkedCommand.transform.position += new Vector3(0, commandsSize * 1.05f, 0);
+            }
+            command = command.parentCommand;
         }
     }
 }
