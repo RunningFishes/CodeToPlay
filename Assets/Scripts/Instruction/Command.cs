@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,18 +12,7 @@ public abstract class Command : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     protected Color originalColor;
     protected float clockPerExecute;
-
-    private TextMeshPro text;
-    private Color originalTextColor;
-    public virtual void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
-        clockPerExecute = Core.instance.clockPerExecute;
-
-        text = GetComponentInChildren<TextMeshPro>();
-        originalTextColor = text.color;
-    }
+    
     public abstract void Execute();
     public virtual void SetNextLinkedCommand(Command command)
     {
@@ -47,7 +35,7 @@ public abstract class Command : MonoBehaviour
     public virtual Command GetBottomCommand()
     {
         Command tmpCommand = this;
-        while (tmpCommand.nextLinkedCommand != null)
+        while(tmpCommand.nextLinkedCommand != null)
         {
             tmpCommand = tmpCommand.nextLinkedCommand;
         }
@@ -57,10 +45,10 @@ public abstract class Command : MonoBehaviour
     {
         int count = 0;
         Command tmpCommand = this;
-        while (tmpCommand != null)
+        while(tmpCommand != null)
         {
             // get in loop command size
-            if (tmpCommand.gameObject.tag == "Loop" && tmpCommand.GetComponent<Loop>().linkedLoopCommand != null)
+            if(tmpCommand.gameObject.tag == "Loop" && tmpCommand.GetComponent<Loop>().linkedLoopCommand != null)
             {
                 count += tmpCommand.GetComponent<Loop>().linkedLoopCommand.GetSizeCommands();
             }
@@ -68,18 +56,5 @@ public abstract class Command : MonoBehaviour
             tmpCommand = tmpCommand.nextLinkedCommand;
         }
         return count;
-    }
-    public virtual void SetTransparent(bool isTransparent)
-    {
-        if (isTransparent)
-        {
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, ColorController.instance.onHoldedTransparent);
-            text.color = new Color(text.color.r, text.color.g, text.color.b, ColorController.instance.onHoldedTransparent);
-        }
-        else
-        {
-            spriteRenderer.color = originalColor;
-            text.color = originalTextColor;
-        }
     }
 }

@@ -18,7 +18,6 @@ public class SetLinked : MonoBehaviour
         Command mainObjectsCommand = mainObjects.GetComponent<Command>();
         Command linkedObjectsCommand = linkedObjects.GetComponent<Command>();
 
-        // function can't be linked as next command
         if (linkedObjects.tag == "Function") return;
 
         // set parent in scene
@@ -28,11 +27,11 @@ public class SetLinked : MonoBehaviour
         int addCommandSize = linkedObjectsCommand.GetSizeCommands();
         ShiftCommandDown(mainObjectsCommand.parentCommand, addCommandSize);
 
-        if (mainObjects.tag == "Command")
+        if (mainObjects.tag == "Command")// command
         {
             linkedObjectsCommand.SetParentCommand(mainObjectsCommand.parentCommand);
 
-            // insert command
+            // insert command after command
             if (mainObjectsCommand.nextLinkedCommand != null)
                 ConnectCommand(linkedObjectsCommand.GetBottomCommand(), mainObjectsCommand.nextLinkedCommand);
             
@@ -41,22 +40,24 @@ public class SetLinked : MonoBehaviour
         else if (mainObjects.tag == "Loop")
         {
             Loop mainObjectsLoop = mainObjects.GetComponent<Loop>();
-            
+            // loop no indent
             if (Mathf.Abs(mainObjects.transform.position.x - linkedObjects.transform.position.x) <= 1.0f)
             {
+                Debug.Log("loop no indent");
                 linkedObjectsCommand.SetParentCommand(mainObjectsLoop.parentCommand);
 
-                // insert command
+                // insert command after loop
                 if (mainObjectsLoop.nextLinkedCommand != null)
                     ConnectCommand(linkedObjectsCommand.GetBottomCommand(), mainObjectsLoop.nextLinkedCommand);
-                
                 ConnectCommand(mainObjectsLoop, linkedObjectsCommand);
             }
+            // loop with indent
             else
             {
+                Debug.Log("loop with indent");
                 linkedObjectsCommand.SetParentCommand(mainObjectsLoop);
 
-                // insert command
+                // insert command after loop
                 if (mainObjectsLoop.linkedLoopCommand != null)
                     ConnectCommand(linkedObjectsCommand.GetBottomCommand(), mainObjectsLoop.linkedLoopCommand);
 
@@ -70,6 +71,8 @@ public class SetLinked : MonoBehaviour
         }
         else if(mainObjects.tag == "Function")
         {
+            // function
+            Debug.Log("function");
             Function mainObjectsFunction = mainObjects.GetComponent<Function>();
 
             linkedObjectsCommand.SetParentCommand(mainObjectsFunction);
