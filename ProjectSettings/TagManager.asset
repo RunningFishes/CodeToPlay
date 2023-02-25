@@ -8,6 +8,7 @@ TagManager:
   - Command
   - Function
   - Main
+  - If
   layers:
   - Default
   - TransparentFX
