@@ -17,12 +17,10 @@ public class Walk : Command
     
     private GameObject player;
 
-    void Awake()
+    public override void Awake()
     {
+        base.Awake();
         player = GameObject.Find("Player");
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
-        clockPerExecute = Core.instance.clockPerExecute;
     }
 
     public override void Execute()
@@ -33,7 +31,7 @@ public class Walk : Command
     IEnumerator Walking()
     {
         // before execute
-        spriteRenderer.color = ColorExecute.instance.onExecuteColor;
+        spriteRenderer.color = ColorController.instance.onExecuteColor;
 
         // execute
         Core.instance.SetBool(true);
