@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DragCamera : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
-    public static DragCamera instance;
+    public static CameraController instance;
 
     public bool isDragSomething = false;
     public float dragSpeed;
@@ -51,6 +51,7 @@ public class DragCamera : MonoBehaviour
 
             lastMousePosition = Input.mousePosition;
         }
+        ZoomCamera();
     }
 
     void MoveCamera(float x, float y)
@@ -60,7 +61,19 @@ public class DragCamera : MonoBehaviour
         pos.y -= y * dragSpeed * Time.deltaTime;
         cam.transform.position = pos;
     }
+    void ZoomCamera()
+    {
+        if (cam.orthographic)
+        {
+            cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+        }
+        else
+        {
+            cam.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+        }
+    }
 
+    
     // scene load complete
     void sceneLoaded(Scene scene, LoadSceneMode mode)
     {
