@@ -30,6 +30,8 @@ public class SetLinked : MonoBehaviour
             {
                 Debug.Log("loop no indent");
                 linkedObjectsCommand.SetParentCommand(mainObjectsLoop.parentCommand);
+
+                // insert command after loop
                 if (mainObjectsLoop.nextLinkedCommand != null)
                 {
                     Command lastLinkedObjectCommand = linkedObjectsCommand.GetBottomCommand();
@@ -42,6 +44,8 @@ public class SetLinked : MonoBehaviour
             {
                 Debug.Log("loop with indent");
                 linkedObjectsCommand.SetParentCommand(mainObjectsLoop);
+
+                // insert command after loop
                 if (mainObjectsLoop.linkedLoopCommand != null)
                 {
                     Command oldLinkedLoopCommand = mainObjectsLoop.linkedLoopCommand;
@@ -52,9 +56,10 @@ public class SetLinked : MonoBehaviour
                 mainObjectsLoop.SetLinkedLoopCommand(linkedObjectsCommand);
                 linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x + 1, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
 
-                if(mainObjectsLoop.nextLinkedCommand != null)
+                // move all command after loop depend on size of added command in loop
+                if (mainObjectsLoop.nextLinkedCommand != null)
                 {
-                    int commands = mainObjectsLoop.GetSizeCommands();
+                    int commands = mainObjectsLoop.linkedLoopCommand.GetSizeCommands() + 1;
                     mainObjectsLoop.nextLinkedCommand.transform.position = new Vector3(mainObjectsLoop.transform.position.x, mainObjectsLoop.transform.position.y - commands * 1.05f, mainObjectsLoop.transform.position.z);
                 }
             }
@@ -64,7 +69,9 @@ public class SetLinked : MonoBehaviour
             // command
             Debug.Log("command");
             linkedObjectsCommand.SetParentCommand(mainObjectsCommand.parentCommand);
-            if(mainObjectsCommand.nextLinkedCommand != null)
+
+            // insert command after command
+            if (mainObjectsCommand.nextLinkedCommand != null)
             {
                 Command lastLinkedObjectCommand = linkedObjectsCommand.GetBottomCommand();
                 ConnectCommand(lastLinkedObjectCommand, mainObjectsCommand.nextLinkedCommand);
@@ -78,37 +85,40 @@ public class SetLinked : MonoBehaviour
             Function mainObjectsFunction = mainObjects.GetComponent<Function>();
 
             linkedObjectsCommand.SetParentCommand(mainObjectsFunction);
+
+            // insert command after function
             if (mainObjectsFunction.linkedFunctionCommand != null)
             {
-                Command oldLinkedLoopCommand = mainObjectsFunction.linkedFunctionCommand;
+                Command oldLinkedFunctionCommand = mainObjectsFunction.linkedFunctionCommand;
                 Command lastLinkedObjectCommand = linkedObjectsCommand.GetBottomCommand();
 
-                ConnectCommand(lastLinkedObjectCommand, oldLinkedLoopCommand);
+                ConnectCommand(lastLinkedObjectCommand, oldLinkedFunctionCommand);
             }
             mainObjectsFunction.SetLinkedFunctionCommand(linkedObjectsCommand);
             linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x + 1, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
 
+            // move all command after function depend on size of added command in function
             if (mainObjectsFunction.nextLinkedCommand != null)
             {
-                int commands = mainObjectsFunction.GetSizeCommands();
+                int commands = mainObjectsFunction.linkedFunctionCommand.GetSizeCommands() + 1;
                 mainObjectsFunction.nextLinkedCommand.transform.position = new Vector3(mainObjectsFunction.transform.position.x, mainObjectsFunction.transform.position.y - commands * 1.05f, mainObjectsFunction.transform.position.z);
             }
         }
     }
 
-    private void ConnectCommand(Command command1, Command command2)
+    private void ConnectCommand(Command prevCommand, Command nextCommand)
     {
-        command2.transform.parent = command1.transform;
+        nextCommand.transform.parent = prevCommand.transform;
 
         int commands = 1;
-        if(command1.gameObject.tag == "Loop")
+        if(prevCommand.gameObject.tag == "Loop")
         {
-            commands += command1.GetComponent<Loop>().GetSizeLinkedLoopCommand();
+            commands += prevCommand.GetComponent<Loop>().GetSizeLinkedLoopCommand();
         }
-        command2.transform.position = new Vector3(command1.transform.position.x, command1.transform.position.y - commands * 1.05f, command1.transform.position.y);
+        nextCommand.transform.position = new Vector3(prevCommand.transform.position.x, prevCommand.transform.position.y - commands * 1.05f, prevCommand.transform.position.y);
 
-        command1.SetNextLinkedCommand(command2);
-        command2.SetPrevLinkedCommand(command1);
+        prevCommand.SetNextLinkedCommand(nextCommand);
+        nextCommand.SetPrevLinkedCommand(prevCommand);
     }
     private Collider2D GetClosestCollider()
     {
