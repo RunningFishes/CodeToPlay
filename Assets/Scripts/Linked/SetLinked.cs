@@ -104,7 +104,7 @@ public class SetLinked : MonoBehaviour
         {
             commands += prevCommand.GetComponent<Loop>().GetSizeLinkedLoopCommand();
         }
-        nextCommand.transform.position = new Vector3(prevCommand.transform.position.x, prevCommand.transform.position.y - commands * 1.05f, prevCommand.transform.position.y);
+        nextCommand.transform.position = new Vector3(prevCommand.transform.position.x, prevCommand.transform.position.y - commands * 1.05f, prevCommand.transform.position.z);
 
         prevCommand.SetNextLinkedCommand(nextCommand);
         nextCommand.SetPrevLinkedCommand(prevCommand);
