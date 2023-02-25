@@ -18,6 +18,7 @@ public class SetLinked : MonoBehaviour
         Command mainObjectsCommand = mainObjects.GetComponent<Command>();
         Command linkedObjectsCommand = linkedObjects.GetComponent<Command>();
 
+        // function can't be linked as next command
         if (linkedObjects.tag == "Function") return;
 
         // set parent in scene
@@ -27,37 +28,35 @@ public class SetLinked : MonoBehaviour
         int addCommandSize = linkedObjectsCommand.GetSizeCommands();
         ShiftCommandDown(mainObjectsCommand.parentCommand, addCommandSize);
 
-        if (mainObjects.tag == "Command")// command
+        if (mainObjects.tag == "Command")
         {
             linkedObjectsCommand.SetParentCommand(mainObjectsCommand.parentCommand);
 
-            // insert command after command
+            // insert command
             if (mainObjectsCommand.nextLinkedCommand != null)
                 ConnectCommand(linkedObjectsCommand.GetBottomCommand(), mainObjectsCommand.nextLinkedCommand);
-            
+
             ConnectCommand(mainObjectsCommand, linkedObjectsCommand);
         }
         else if (mainObjects.tag == "Loop")
         {
             Loop mainObjectsLoop = mainObjects.GetComponent<Loop>();
-            // loop no indent
+
             if (Mathf.Abs(mainObjects.transform.position.x - linkedObjects.transform.position.x) <= 1.0f)
             {
-                Debug.Log("loop no indent");
                 linkedObjectsCommand.SetParentCommand(mainObjectsLoop.parentCommand);
 
-                // insert command after loop
+                // insert command
                 if (mainObjectsLoop.nextLinkedCommand != null)
                     ConnectCommand(linkedObjectsCommand.GetBottomCommand(), mainObjectsLoop.nextLinkedCommand);
+
                 ConnectCommand(mainObjectsLoop, linkedObjectsCommand);
             }
-            // loop with indent
             else
             {
-                Debug.Log("loop with indent");
                 linkedObjectsCommand.SetParentCommand(mainObjectsLoop);
 
-                // insert command after loop
+                // insert command
                 if (mainObjectsLoop.linkedLoopCommand != null)
                     ConnectCommand(linkedObjectsCommand.GetBottomCommand(), mainObjectsLoop.linkedLoopCommand);
 
@@ -69,10 +68,8 @@ public class SetLinked : MonoBehaviour
                     mainObjectsLoop.nextLinkedCommand.transform.position += new Vector3(0, -addCommandSize * 1.05f, 0);
             }
         }
-        else if(mainObjects.tag == "Function")
+        else if (mainObjects.tag == "Function")
         {
-            // function
-            Debug.Log("function");
             Function mainObjectsFunction = mainObjects.GetComponent<Function>();
 
             linkedObjectsCommand.SetParentCommand(mainObjectsFunction);
@@ -80,7 +77,7 @@ public class SetLinked : MonoBehaviour
             // insert command after function
             if (mainObjectsFunction.linkedFunctionCommand != null)
                 ConnectCommand(linkedObjectsCommand.GetBottomCommand(), mainObjectsFunction.linkedFunctionCommand);
-            
+
             mainObjectsFunction.SetLinkedFunctionCommand(linkedObjectsCommand);
             linkedObjects.transform.position = new Vector3(mainObjects.transform.position.x + 1, mainObjects.transform.position.y - 1.05f, mainObjects.transform.position.z);
 
