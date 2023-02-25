@@ -32,8 +32,8 @@ public class DragTransform : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (DragCamera.instance != null)
-            DragCamera.instance.isDragSomething = true;
+        if (CameraController.instance != null)
+            CameraController.instance.isDragSomething = true;
 
         if (Core.instance.isGameRunning()) return;
 
@@ -47,8 +47,8 @@ public class DragTransform : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (DragCamera.instance != null)
-            DragCamera.instance.isDragSomething = false;
+        if (CameraController.instance != null)
+            CameraController.instance.isDragSomething = false;
 
         if (Core.instance.isGameRunning()) return;
 
