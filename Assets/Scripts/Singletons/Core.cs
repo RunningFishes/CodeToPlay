@@ -40,4 +40,9 @@ public class Core : MonoBehaviour
     {
         return isRunning.Count;
     }
+
+    public bool isGameRunning()
+    {
+        return isRunning.Count != 0;
+    }
 }

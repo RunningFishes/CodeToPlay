@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Admin : MonoBehaviour
 {
     GameObject Main;
-
+    
     void Start()
     {
         Main = GameObject.Find("Main");

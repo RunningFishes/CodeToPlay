@@ -20,20 +20,24 @@ public class DragTransform : MonoBehaviour
 
     void OnMouseEnter()
     {
+        if (Core.instance.isGameRunning()) return;
         spriteRenderer.color = mouseOverColor;
     }
 
     void OnMouseExit()
     {
+        if (Core.instance.isGameRunning()) return;
         spriteRenderer.color = originalColor;
     }
 
     void OnMouseDown()
     {
-        distance = Vector2.Distance(transform.position, Camera.main.transform.position);
-        dragging = true;
         if (DragCamera.instance != null)
             DragCamera.instance.isDragSomething = true;
+        
+        if (Core.instance.isGameRunning()) return;
+        distance = Vector2.Distance(transform.position, Camera.main.transform.position);
+        dragging = true;
 
         // make on top
         transform.position += new Vector3(0, 0, -1);
@@ -41,11 +45,13 @@ public class DragTransform : MonoBehaviour
 
     void OnMouseUp()
     {
+        if (DragCamera.instance != null)
+            DragCamera.instance.isDragSomething = false;
+        
+        if (Core.instance.isGameRunning()) return;
         dragging = false;
         GetComponent<ManageLinked>().UnLinked();
         GetComponent<SetLinked>().Linked();
-        if (DragCamera.instance != null)
-            DragCamera.instance.isDragSomething = false;
 
         // make default
         transform.position += new Vector3(0, 0, 1);
@@ -53,6 +59,8 @@ public class DragTransform : MonoBehaviour
 
     void Update()
     {
+        if (Core.instance.isGameRunning()) return;
+        
         if (dragging)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
