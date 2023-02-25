@@ -36,6 +36,8 @@ public class DragTransform : MonoBehaviour
             DragCamera.instance.isDragSomething = true;
         
         if (Core.instance.isGameRunning()) return;
+
+        SetTransparentHoldedCommand(true);
         distance = Vector2.Distance(transform.position, Camera.main.transform.position);
         dragging = true;
 
@@ -49,6 +51,8 @@ public class DragTransform : MonoBehaviour
             DragCamera.instance.isDragSomething = false;
         
         if (Core.instance.isGameRunning()) return;
+
+        SetTransparentHoldedCommand(false);
         dragging = false;
         GetComponent<ManageLinked>().UnLinked();
         GetComponent<SetLinked>().Linked();
@@ -66,6 +70,14 @@ public class DragTransform : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 rayPoint = ray.GetPoint(distance);
             transform.position = new Vector3(rayPoint.x, rayPoint.y, transform.position.z);
+        }
+    }
+
+    private void SetTransparentHoldedCommand(bool isHolded)
+    {
+        foreach(Command command in transform.GetComponentsInChildren<Command>())
+        {
+            command.SetTransparent(isHolded);
         }
     }
 }
