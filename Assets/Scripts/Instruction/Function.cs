@@ -6,13 +6,6 @@ public class Function : Command
 {
     public Command linkedFunctionCommand;
     
-    void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
-        clockPerExecute = Core.instance.clockPerExecute;
-    }
-
     public override void Execute()
     {
         StartCoroutine(Functioning());
@@ -28,7 +21,7 @@ public class Function : Command
         Core.instance.Push(false);
 
         
-        spriteRenderer.color = ColorExecute.instance.onExecuteColor;
+        spriteRenderer.color = ColorController.instance.onExecuteColor;
         yield return new WaitForSeconds(clockPerExecute);
         spriteRenderer.color = originalColor;
 
