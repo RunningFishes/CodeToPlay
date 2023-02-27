@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,16 +12,19 @@ public class Walk : Command
         Left,
         Right
     }
-    
+
+ 
     [SerializeField]
     Direction direction;
     
     private GameObject player;
+    private Animator playerAnim;
 
     public override void Awake()
     {
         base.Awake();
         player = GameObject.Find("Player");
+        playerAnim = player.GetComponent<Animator>();
     }
 
     public override void Execute()
@@ -33,6 +37,11 @@ public class Walk : Command
         // before execute
         spriteRenderer.color = ColorController.instance.onExecuteColor;
 
+        // get animation
+        string animationName = SelectAnimationFromDirection(direction);
+        // set animation
+        playerAnim.SetBool(animationName, true);
+
         // execute
         Core.instance.SetBool(true);
         Vector3 movement = SelectVectorFromDirection(direction);
@@ -41,6 +50,9 @@ public class Walk : Command
             player.transform.position += movement * clockPerExecute/10f * 5;
             yield return new WaitForSeconds(clockPerExecute / 10f);
         }
+
+        // unset animation
+        playerAnim.SetBool(animationName, false);
 
         // after execute
         spriteRenderer.color = originalColor;
@@ -70,5 +82,26 @@ public class Walk : Command
             return new Vector3(1, 0, 0);
         }
         return new Vector3(0, 0, 0);
+    }
+
+    String SelectAnimationFromDirection(Direction di)
+    {
+        if (direction == Direction.Up)
+        {
+            return "WalkUp";
+        }
+        else if (direction == Direction.Down)
+        {
+            return "WalkDown";
+        }
+        else if (direction == Direction.Left)
+        {
+            return "WalkSide";
+        }
+        else if (direction == Direction.Right)
+        {
+            return "WalkSide";
+        }
+        return "Idle";
     }
 }
