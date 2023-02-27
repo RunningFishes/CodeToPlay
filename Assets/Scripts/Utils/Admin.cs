@@ -20,6 +20,7 @@ public class Admin : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
+
             if (!Core.instance.isGameRunning())
                 Main.GetComponent<Function>().Execute();
         }
