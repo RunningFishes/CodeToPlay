@@ -23,6 +23,10 @@ public class Core : MonoBehaviour
     public void Pop()
     {
         this.isRunning.RemoveAt(this.isRunning.Count - 1);
+        if (this.isRunning.Count == 0)
+        {
+            EventManager.instance.OnCommandComplete();
+        }
     }
 
     public void SetBool(bool value)
