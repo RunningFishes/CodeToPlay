@@ -9,6 +9,7 @@ TagManager:
   - Function
   - Main
   - If
+  - Treasure
   layers:
   - Default
   - TransparentFX
