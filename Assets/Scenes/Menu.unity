@@ -1491,6 +1491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDragSomething: 0
   dragSpeed: 2
+  zoomSpeed: 2
 --- !u!1 &2133953176
 GameObject:
   m_ObjectHideFlags: 0
