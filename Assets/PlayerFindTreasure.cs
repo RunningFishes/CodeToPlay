@@ -31,8 +31,8 @@ public class PlayerFindTreasure : MonoBehaviour
     private bool CheckTreasureInRadius()
     {
         GameObject[] treasures = GameObject.FindGameObjectsWithTag("Treasure");
-
-        if (treasures == null)
+  
+        if (treasures.Length == 0)
             return false;
 
         foreach (GameObject treasure in treasures)
