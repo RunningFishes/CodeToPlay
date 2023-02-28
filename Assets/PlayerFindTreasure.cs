@@ -20,29 +20,29 @@ public class PlayerFindTreasure : MonoBehaviour
     
     private void OpenTreasureInRadius()
     {
-        if (!CheckTreasureInRadius())
+        GameObject treasure = CheckTreasureInRadius();
+        if (treasure == null)
             return;
 
         // Open treasure
-        Debug.Log("Open treasure");
+        treasure.GetComponent<Treasure>().Open();
     }
 
 
-    private bool CheckTreasureInRadius()
+    private GameObject CheckTreasureInRadius()
     {
         GameObject[] treasures = GameObject.FindGameObjectsWithTag("Treasure");
   
         if (treasures.Length == 0)
-            return false;
+            return null;
 
         foreach (GameObject treasure in treasures)
         {
-            Debug.Log(Vector3.Distance(transform.position, treasure.transform.position));
             if (Vector3.Distance(transform.position, treasure.transform.position) < findTresureRadius)
             {
-                return true;
+                return treasure;
             }
         }
-        return false;
+        return null;
     }
 }
