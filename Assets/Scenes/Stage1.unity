@@ -5846,6 +5846,8 @@ GameObject:
   - component: {fileID: 956725716}
   - component: {fileID: 956725715}
   - component: {fileID: 956725717}
+  - component: {fileID: 956725719}
+  - component: {fileID: 956725720}
   m_Layer: 0
   m_Name: Treasure
   m_TagString: Treasure
@@ -5894,7 +5896,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1850674958, guid: fc5a1ef4b35a4b047920589ddd2f4856, type: 3}
+  m_Sprite: {fileID: -167674203, guid: f0d8675e3072b9d4e98d231ef271489c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5937,7 +5939,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.14, y: 0.15}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5946,6 +5948,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14, y: 0.15}
   m_EdgeRadius: 0
+--- !u!114 &956725719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956725714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83045eef0197e54c9ffeb086e158ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &956725720
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956725714}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e2bb4c26d9c749468d9e46c3e3c5fa2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1069492751
 GameObject:
   m_ObjectHideFlags: 0
