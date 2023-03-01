@@ -35,10 +35,10 @@ public class Walk : Command
 
         // execute
         Core.instance.SetBool(true);
-        Vector3 movement = SelectVectorFromDirection(direction);
+        Vector3 directionVector = SelectVectorFromDirection();
         for (int i = 0; i < 10; i++)
         {
-            player.transform.position += movement * clockPerExecute/10f * 5;
+            player.transform.position += directionVector * clockPerExecute/10f * 5;
             yield return new WaitForSeconds(clockPerExecute / 10f);
         }
 
@@ -51,7 +51,7 @@ public class Walk : Command
             Core.instance.SetBool(false);
     }
 
-    Vector3 SelectVectorFromDirection(Direction di)
+    Vector3 SelectVectorFromDirection()
     {
         if (direction == Direction.Up)
         {
