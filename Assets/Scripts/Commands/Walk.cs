@@ -15,14 +15,6 @@ public class Walk : Command
     [SerializeField]
     Direction direction;
     
-    private GameObject player;
-
-    public override void Awake()
-    {
-        base.Awake();
-        player = GameObject.Find("Player");
-    }
-
     public override void Execute()
     {
         StartCoroutine(Walking());
@@ -38,7 +30,7 @@ public class Walk : Command
         Vector3 directionVector = SelectVectorFromDirection();
         for (int i = 0; i < 10; i++)
         {
-            player.transform.position += directionVector * clockPerExecute/10f * 5;
+            Player.instance.transform.position += directionVector * clockPerExecute/10f * 5;
             yield return new WaitForSeconds(clockPerExecute / 10f);
         }
 
