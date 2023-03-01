@@ -31,14 +31,18 @@ public class Dash : Command
         Core.instance.SetBool(true);
         Vector3 movement = SelectVectorFromDirection();
 
+        // decrease animate time for player dash looking fast
         float animationTime = clockPerExecute * 0.6f;
 
+        // Here can add some charge animation
         yield return new WaitForSeconds(clockPerExecute * 0.2f);
+        
         for (int i = 0; i < 10; i++)
         {
             Player.instance.transform.position += movement * animationTime / 10f * 5 * 2 / 0.6f;
             yield return new WaitForSeconds(animationTime / 10f);
         }
+        // Here can add some stop animation
         yield return new WaitForSeconds(clockPerExecute * 0.2f);
 
         // after execute
