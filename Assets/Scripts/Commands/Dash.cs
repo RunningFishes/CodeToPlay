@@ -33,13 +33,27 @@ public class Dash : Command
 
         // decrease animate time for player dash looking fast
         float animationTime = clockPerExecute * 0.6f;
-
+        float distance;
+        // something that check for wall
+        if (1 == 1)
+        {
+            distance = 0;
+        }
+        else if(2 == 2)
+        {
+            distance = 5;
+        }
+        else if(3 == 3)
+        {
+            distance = 10;
+        }
+                
         // Here can add some charge animation
         yield return new WaitForSeconds(clockPerExecute * 0.2f);
         
         for (int i = 0; i < 10; i++)
         {
-            Player.instance.transform.position += movement * animationTime / 10f * 5 * 2 / 0.6f;
+            Player.instance.transform.position += movement * animationTime / 10f * distance / 0.6f;
             yield return new WaitForSeconds(animationTime / 10f);
         }
         // Here can add some stop animation
