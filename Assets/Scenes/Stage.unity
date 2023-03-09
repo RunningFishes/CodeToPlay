@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 363402358}
   - component: {fileID: 363402361}
   - component: {fileID: 363402362}
+  - component: {fileID: 363402363}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -476,6 +477,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 1837731430}
   canvas: {fileID: 1289228313}
+--- !u!114 &363402363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363402357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6202b95b633880c469ebda18f9f5562e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageReach: 20
+  active: 0
 --- !u!1 &512487646
 GameObject:
   m_ObjectHideFlags: 0
