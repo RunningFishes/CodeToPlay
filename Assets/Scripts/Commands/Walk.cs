@@ -19,12 +19,15 @@ public class Walk : Command
     
     private GameObject player;
     private Animator playerAnim;
+    private SpriteRenderer playerSprite;
+    private readonly float speed = 5.325f;
 
     public override void Awake()
     {
         base.Awake();
         player = GameObject.Find("Player");
         playerAnim = player.GetComponent<Animator>();
+        playerSprite = player.GetComponent<SpriteRenderer>();
     }
 
     public override void Execute()
@@ -41,13 +44,18 @@ public class Walk : Command
         string animationName = SelectAnimationFromDirection(direction);
         // set animation
         playerAnim.SetBool(animationName, true);
+        // set sprite depend on left or right
+        if (direction == Direction.Left)
+            playerSprite.flipX = true;
+        if (direction == Direction.Right)
+            playerSprite.flipX = false;
 
         // execute
         Core.instance.SetBool(true);
         Vector3 movement = SelectVectorFromDirection(direction);
         for (int i = 0; i < 10; i++)
         {
-            player.transform.position += movement * clockPerExecute/10f * 5;
+            player.transform.position += movement * clockPerExecute/10f * speed;
             yield return new WaitForSeconds(clockPerExecute / 10f);
         }
 
