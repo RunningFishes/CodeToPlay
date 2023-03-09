@@ -11,13 +11,14 @@ public class SetLinked : MonoBehaviour
 
         GameObject mainObjects = closestCollider.gameObject;
         GameObject linkedObjects = gameObject;
+        
         Linked(mainObjects, linkedObjects);
     }
     public void Linked(GameObject mainObjects, GameObject linkedObjects)
     {
         Command mainObjectsCommand = mainObjects.GetComponent<Command>();
         Command linkedObjectsCommand = linkedObjects.GetComponent<Command>();
-
+ 
         // function can't be linked as next command
         if (linkedObjects.tag == "Function") return;
 
@@ -153,6 +154,8 @@ public class SetLinked : MonoBehaviour
         int idx = -1;
         for (int i = 0; i < size; i++)
         {
+            if (colliders[i].gameObject.GetComponent<Command>() == null) continue;
+
             float newDistance = Vector2.Distance(transform.position, colliders[i].transform.position);
             if (distance > newDistance)
             {
